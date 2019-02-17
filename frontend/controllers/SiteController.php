@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use yii\web\Controller;
+use frontend\models\User;
 
 
 /**
@@ -30,7 +31,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $users = User::find()->all();
+        return $this->render('index', [
+            'users' => $users,
+        ]);
     }
 
 }
