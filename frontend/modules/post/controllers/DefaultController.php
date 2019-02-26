@@ -70,6 +70,7 @@ class DefaultController extends Controller
         $id = Yii::$app->request->post('id');
         
         
+        
         /* @var $currentUser User*/
         $currentUser = Yii::$app->user->identity;
         $post = $this->findPost($id);

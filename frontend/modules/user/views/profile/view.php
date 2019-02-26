@@ -3,6 +3,7 @@
 /* @var $user frontend\models\User */
 /* @var $currentUser Yii::$app->user->identity */
 /* @var $modelPicture frontend\modules\user\models\forms\PictureForm */
+/* @var $feedItems[] frontend\models\Feed */
 
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
@@ -69,6 +70,16 @@ use dosamigos\fileupload\FileUpload;
     <?php endforeach; ?>
 </div>
 <?php endif; ?>
+<?php endif; ?>
+
+<hr>
+<?php if ($user->equals($currentUser)): ?>
+<?php foreach ($feedItems as $feedItem): ?>
+<a href="<?php echo Url::to(['/post/'. $feedItem->post_id]); ?>"><?php echo $feedItem->author_name; ?>
+    <img src="<?php echo Yii::$app->storage->getFile($feedItem->post_filename); ?>" width="100" height="150" />
+</a>
+    <?php echo '<br>'; ?>
+<?php endforeach; ?>
 <?php endif; ?>
 
 <hr>

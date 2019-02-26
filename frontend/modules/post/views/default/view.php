@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $post frontend\models\Post */
+/* @var $currentUser User */
 
 use yii\helpers\Html;
 use yii\web\JqueryAsset;
@@ -44,6 +45,6 @@ use yii\web\JqueryAsset;
 </div>
 
 <?php
-$this->registerJsFile('@web/js/like.js', [
+$this->registerJsFile('@web/js/likes.js', [
     'depends' => JqueryAsset::class,
 ]);
