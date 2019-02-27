@@ -11,9 +11,9 @@ return [
         'maxHeight' => 600,
     ],
     'postPicture' => [
-        'maxWidth' => 600,
-        'maxHeight' => 400,
+        'maxWidth' => 1024,
+        'maxHeight' => 768,
     ],
     
-    'feedPostLimit' =>200,
+    'feedPostLimit' => 200,
 ];
