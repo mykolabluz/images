@@ -97,8 +97,9 @@ $this->title = Html::encode($user->username);
                      <?php if ($user->about): ?>
                         <div class="profile-description">
                             <p><?php echo HtmlPurifier::process($user->about); ?></p>
-                        </div>
+                        </div>                           
                      <?php endif; ?>
+                            <br>
                         <div class="profile-bottom">
                             <div class="profile-post-count">
                                 <span><?php echo $user->getPostCount(); ?> posts</span>

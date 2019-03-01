@@ -4,6 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use frontend\modules\post\models\PostComments;
 
 /**
  * This is the model class for table "post".
@@ -114,4 +115,5 @@ class Post extends \yii\db\ActiveRecord
         $redis = Yii::$app->redis;
         return $redis->sismember("post:{$this->getId()}:likes", $user->getId());
     }
+
 }

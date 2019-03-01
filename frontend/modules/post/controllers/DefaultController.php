@@ -9,6 +9,7 @@ use frontend\modules\post\models\forms\PostForm;
 use frontend\models\Post;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use frontend\modules\post\models\Comments;
 
 
 /**
@@ -51,11 +52,14 @@ class DefaultController extends Controller
     public function actionView($id)
     {
         /* @var $currentUser User */
-        $currentUser = Yii::$app->user->identity;
+        $currentUser = Yii::$app->user->identity;  
         
+        $model = Post::find()->where(['id' => $id])->one();
+                        
         return $this->render('view', [
             'post' => $this->findPost($id),
             'currentUser' => $currentUser,
+            'model' => $model,
         ]);
     }
     

@@ -18,8 +18,20 @@ return [
         'post' => [
             'class' => 'frontend\modules\post\Module',
         ],
+        'comment' => [
+            'class' => 'yii2mod\comments\Module',
+    ],
     ],
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'yii2mod.comments' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii2mod/comments/messages',
+                ],
+                // ...
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],

@@ -2,10 +2,12 @@
 /* @var $this yii\web\View */
 /* @var $post frontend\models\Post */
 /* @var $currentUser User */
+/* @var $comments frontend\modules\post\models */
 
 use yii\helpers\Html;
 use yii\web\JqueryAsset;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
 $this->title = Html::encode($post->user->username);
 ?>
@@ -54,11 +56,7 @@ $this->title = Html::encode($post->user->username);
                                     Like&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>
                                 </a>
                             </div>
-
-                            <div class="post-comments">
-                                <a href="#">0 comments</a>
-
-                            </div>
+                            &nbsp;&nbsp;&nbsp;
                             <div class="post-date">
                                 <span><?php echo Html::encode($post->geViewDate()); ?></span>    
                             </div>
@@ -68,48 +66,24 @@ $this->title = Html::encode($post->user->username);
                         </div>
                     </article>
                     <!-- feed item -->
-
-
-                    <div class="col-sm-12 col-xs-12">
-                        <h4>0 comments</h4>
-                        <div class="comments-post">
-
-                            <div class="single-item-title"></div>
-                            <div class="row">
-                                <ul class="comment-list">
-
-                                    <!-- comment item -->
-                                    <li class="comment">
-                                        <div class="comment-user-image">
-                                            <img src="img/demo/avatar.jpg">
-                                        </div>
-                                        <div class="comment-info">
-                                            <h4 class="author"><a href="#">Firstname Lastname</a> <span>(April 10, 2017)</span></h4>
-                                            <p>Lorem ipsum dolor sit amet, iisque bonorum consequat an vis, ea dico sonet dolorum eam!</p>
-                                        </div>
-                                    </li>
-                                    <!-- comment item -->
-
-                                </ul>
-                            </div>
-
-                        </div>
-                        <!-- comments-post -->
-                    </div>
-
-                    <div class="col-sm-12 col-xs-12">
-                        <div class="comment-respond">
-                            <h4>Leave a Reply</h4>
-                            <form action="#" method="post">
-                                <p class="comment-form-comment">
-                                    <textarea name="comment" rows="6" class="form-control" placeholder="Text" aria-required="true"></textarea>
-                                </p>
-                                <p class="form-submit">
-                                    <button type="submit" class="btn btn-secondary">Send</button> 
-                                </p>				
-                            </form>
-                        </div>
-                    </div>
+                    
+                    <!-- Comments widgets -->
+                    <?php
+                    echo \yii2mod\comments\widgets\Comment::widget([
+                        'model' => $model,
+                        'relatedTo' => 'User ' . \Yii::$app->user->identity->username . ' commented on the page ' . \yii\helpers\Url::current(),
+                        'maxLevel' => 2,
+                        'dataProviderConfig' => [
+                            'pagination' => [
+                                'pageSize' => 10
+                            ],
+                        ],
+                        'listViewConfig' => [
+                            'emptyText' => Yii::t('app', 'No comments found.'),
+                        ],
+                    ]);
+                    ?>
+                    <!-- Comments widgets -->
                 </div>
             </div>
         </div>

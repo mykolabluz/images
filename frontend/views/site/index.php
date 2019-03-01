@@ -60,10 +60,7 @@ $this->title = 'News Feed';
                                             Like&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>
                                         </a>
                                     </div>
-                                    <div class="post-comments">
-                                        <a href="#">0 Comments</a>
-
-                                    </div>
+                                   &nbsp;&nbsp;&nbsp;
                                     <div class="post-date">
                                         <span><?php echo Yii::$app->formatter->asDatetime($feedItem->post_created_at); ?></span>    
                                     </div>
