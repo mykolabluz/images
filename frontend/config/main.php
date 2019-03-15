@@ -9,7 +9,13 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'language' => 'ru-Ru',
+    'bootstrap' => [
+        'log',
+        [
+            'class' => 'frontend\components\LanguageSelector',
+        ],
+    ],
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'user' => [
@@ -25,11 +31,15 @@ return [
     'components' => [
         'i18n' => [
             'translations' => [
-                'yii2mod.comments' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@yii2mod/comments/messages',
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource'
                 ],
-                // ...
+                // интернализация на все приложение
+//                'yii2mod.comments' => [
+//                    'class' => 'yii\i18n\PhpMessageSource',
+//                    'basePath' => '@yii2mod/comments/messages',
+//                ],
+//                // ... интернационализация на модуль comment
             ],
         ],
         'request' => [
@@ -64,9 +74,6 @@ return [
                 'profile/<nickname:\w+>' => 'user/profile/view',
                 'post/<id:\d+>' => 'post/default/view',
             ],
-        ],
-        'storage' => [
-            'class' => 'frontend\components\Storage'
         ],
         'feedService' => [
             'class' => 'frontend\components\FeedService',

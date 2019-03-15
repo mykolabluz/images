@@ -309,6 +309,14 @@ class User extends ActiveRecord implements IdentityInterface
         return self::DEFAULT_IMAGE;
     }
     
+    public function getAvatar()
+    {
+        if ($this->picture) {
+            return Yii::$app->storage->getFile($this->picture);
+        }
+        return self::DEFAULT_IMAGE;
+    }
+    
     /**
      * Delete picture from user record and file system
      * @return boolean
